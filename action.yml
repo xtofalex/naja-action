@@ -1,0 +1,56 @@
+name: "Naja Design Regress"
+description: "Synthesize Verilog with Yosys, and test and analyze with Najaeda."
+author: "najaeda"
+branding:
+  icon: "bar-chart-2"
+  color: "blue"
+
+inputs:
+  verilog-files:
+    description: "Space-separated list or glob pattern of Verilog source files"
+    required: true
+
+  top-module:
+    description: "Top-level module name for synthesis"
+    required: true
+
+  output-dir:
+    description: "Directory where dashboard (metrics, plots, HTML) will be saved"
+    required: false
+    default: "dashboard"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install Yosys
+      shell: bash
+      run: |
+        sudo apt update
+        sudo apt install -y yosys
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+
+    - name: Install Python dependencies
+      shell: bash
+      run: |
+        pip install --upgrade pip
+        pip install -r ${{ github.action_path }}/requirements.txt
+
+    - name: Run Yosys synthesis
+      shell: bash
+      run: |
+        mkdir -p build
+        yosys -p "read_verilog ${{ inputs.verilog-files }}; hierarchy -top ${{ inputs.top-module }}; proc; opt; fsm; opt; memory; opt; techmap; opt; write_verilog -noattr build/netlist.v"
+
+    - name: Analyze synthesized netlist with Najaeda
+      shell: bash
+      run: |
+        python ${{ github.action_path }}/scripts/analyze.py build/netlist.v > stats.json
+
+    - name: Generate dashboard
+      shell: bash
+      run: |
+        python ${{ github.action_path }}/scripts/dashboard.py stats.json ${{ inputs.output-dir }}
