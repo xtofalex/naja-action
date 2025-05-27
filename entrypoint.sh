@@ -5,7 +5,7 @@ ROOT="/github/workspace"
 YOSYS_SCRIPT="$1"
 SYNTH_ROOT="$2"
 LIBERTY_FILE="$ROOT/$SYNTH_ROOT/libs/NangateOpenCellLibrary_typical.lib"
-VERILOG_FILE="$ROOT/design.v"
+VERILOG_FILE="$ROOT/$SYNTH_ROOT/design.v"
 
 echo "Running Yosys on: $ROOT/$YOSYS_SCRIPT"
 echo "Design root: $ROOT/$SYNTH_ROOT"

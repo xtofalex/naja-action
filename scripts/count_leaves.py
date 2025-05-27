@@ -15,7 +15,7 @@ args = parser.parse_args()
 
 logging.basicConfig(level=logging.INFO)
 
-netlist.load_liberty(args.liberty)
+netlist.load_liberty([args.liberty])
 top = netlist.load_verilog([args.verilog])
 
 # snippet-start: count_leaves
