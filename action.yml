@@ -37,13 +37,14 @@ runs:
       shell: bash
       run: |
         pip install --upgrade pip
-        pip install -r ${{ github.action_path }}/requirements.txt
+        pip install najaeda
+        #pip install -r ${{ github.action_path }}/requirements.txt
 
     - name: Run Yosys synthesis
       shell: bash
       run: |
-        mkdir -p build
-        yosys -p "read_verilog ${{ inputs.verilog-files }}; hierarchy -top ${{ inputs.top-module }}; proc; opt; fsm; opt; memory; opt; techmap; opt; write_verilog -noattr build/netlist.v"
+        mkdir -p yosys
+        cd yosys; yosys inputs.yosys_script
 
     - name: Analyze synthesized netlist with Najaeda
       shell: bash
