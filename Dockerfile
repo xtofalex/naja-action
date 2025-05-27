@@ -4,7 +4,7 @@ FROM alpine:3.21.3 AS builder
 # Install required packages
 RUN apk --no-cache add ca-certificates
 RUN apk update && apk upgrade
-RUN apk add make pkgconfig tcl-dev readline-dev libffi-dev git
+RUN apk add make pkgconfig tcl-dev readline-dev libffi-dev git g++
 RUN mkdir yosys
 WORKDIR /yosys
 RUN wget https://github.com/YosysHQ/yosys/releases/download/v0.53/yosys.tar.gz
