@@ -5,16 +5,16 @@ on:
     branches:
       - main
 
-  workflow_dispatch:
-    inputs:
-      verilog-files:
-        description: "Verilog file glob"
-        required: true
-        default: "src/*.v"
-      top-module:
-        description: "Top-level module name"
-        required: true
-        default: "top"
+  #workflow_dispatch:
+  #  inputs:
+  #    verilog-files:
+  #      description: "Verilog file glob"
+  #      required: true
+  #      default: "src/*.v"
+  #    top-module:
+  #      description: "Top-level module name"
+  #      required: true
+  #      default: "top"
 
 jobs:
   test-action:

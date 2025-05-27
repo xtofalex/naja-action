@@ -6,18 +6,9 @@ branding:
   color: "blue"
 
 inputs:
-  verilog-files:
-    description: "Space-separated list or glob pattern of Verilog source files"
+  yosys-script:
+    description: "Path to the Yosys input script"
     required: true
-
-  top-module:
-    description: "Top-level module name for synthesis"
-    required: true
-
-  output-dir:
-    description: "Directory where dashboard (metrics, plots, HTML) will be saved"
-    required: false
-    default: "dashboard"
 
 runs:
   using: "composite"
