@@ -35,7 +35,7 @@ runs:
       shell: bash
       run: |
         mkdir -p yosys
-        cd yosys; yosys inputs.yosys_script
+        cd yosys; yosys ${{ inputs.yosys_script }}
 
     - name: Analyze synthesized netlist with Najaeda
       shell: bash
