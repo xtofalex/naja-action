@@ -6,7 +6,7 @@ branding:
   color: "blue"
 
 inputs:
-  yosys-script:
+  yosys_script:
     description: "Path to the Yosys input script"
     required: true
 
