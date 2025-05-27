@@ -41,7 +41,7 @@ runs:
       run: |
         mkdir -p yosys
         echo "Synthesis root: $SYNTH_ROOT"
-        cd yosys; yosys ${{ inputs.yosys_script }}
+        cd yosys; yosys -c ${{ inputs.yosys_script }}
 
     - name: Analyze synthesized netlist with Najaeda
       shell: bash
