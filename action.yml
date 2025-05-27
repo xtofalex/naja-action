@@ -9,6 +9,9 @@ inputs:
   yosys_script:
     description: "Path to the Yosys input script"
     required: true
+  synth_root:
+    description: "Path to the root of the design files"
+    required: true
 
 runs:
   using: "composite"
@@ -33,6 +36,8 @@ runs:
 
     - name: Run Yosys synthesis
       shell: bash
+      env:
+        SYNTH_ROOT: ${{ inputs.synth_root }}
       run: |
         mkdir -p yosys
         cd yosys; yosys ${{ inputs.yosys_script }}

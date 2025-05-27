@@ -1,10 +1,10 @@
-read_liberty -lib libs/NangateOpenCellLibrary_typical.lib
-read_liberty -lib libs/fakeram45_64x7.lib
-read_liberty -lib libs/fakeram45_64x15.lib
-read_liberty -lib libs/fakeram45_64x96.lib
-read_liberty -lib libs/fakeram45_256x95.lib
-read_liberty -lib libs/fakeram45_512x64.lib 
-read_verilog black_parrot.v macros.v
+read_liberty -lib $::env(SYNTH_ROOT)/libs/NangateOpenCellLibrary_typical.lib
+read_liberty -lib $::env(SYNTH_ROOT)/libs/fakeram45_64x7.lib
+read_liberty -lib $::env(SYNTH_ROOT)/libs/fakeram45_64x15.lib
+read_liberty -lib $::env(SYNTH_ROOT)/libs/fakeram45_64x96.lib
+read_liberty -lib $::env(SYNTH_ROOT)/libs/fakeram45_256x95.lib
+read_liberty -lib $::env(SYNTH_ROOT)/libs/fakeram45_512x64.lib 
+read_verilog $::env(SYNTH_ROOT)/black_parrot.v $::env(SYNTH_ROOT)/macros.v
 keep_hierarchy
 synth
 
@@ -20,7 +20,7 @@ splitnets
   extract_fa
   # map full adders
   #techmap -map $::env(ADDER_MAP_FILE)
-  techmap -map cells_adders.v 
+  techmap -map $::env(SYNTH_ROOT)/cells_adders.v 
   techmap
   # Quick optimization
   opt -fast -purge
@@ -29,10 +29,10 @@ splitnets
 # Technology mapping of latches
 #if {[env_var_exists_and_non_empty LATCH_MAP_FILE]} {
   #techmap -map $::env(LATCH_MAP_FILE)
-  techmap -map cells_latch.v
+  techmap -map $::env(SYNTH_ROOT)/cells_latch.v
 #}
 
-dfflibmap -liberty libs/NangateOpenCellLibrary_typical.lib
+dfflibmap -liberty $::env(SYNTH_ROOT)/libs/NangateOpenCellLibrary_typical.lib
 
 # Remove unused cells and wires
 opt_clean -purge
