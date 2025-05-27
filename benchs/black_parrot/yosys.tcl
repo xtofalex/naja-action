@@ -20,7 +20,8 @@ delete t:\$print
 # At least this is predictable.
 renames -wire
 
-log_cmd abc
+#log_cmd abc
+abc
 
 # Optimize the design
 opt -purge
