@@ -7,4 +7,4 @@ SYNTH_ROOT="$2"
 echo "Running Yosys on: $YOSYS_SCRIPT"
 echo "Design root: $SYNTH_ROOT"
 
-yosys-install/yosys "$YOSYS_SCRIPT"
+/yosys-install/yosys "$YOSYS_SCRIPT"
