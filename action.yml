@@ -16,9 +16,9 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  #inputs:
-  #  yosys_script: ${{ inputs.yosys_script }}
-  #  synth_root: ${{ inputs.synth_root }}
+  args:
+    - ${{ inputs.yosys_script }}
+    - ${{ inputs.synth_root }}
   #steps:
   #  - name: Install Yosys
   #    shell: bash
