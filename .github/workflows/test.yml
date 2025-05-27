@@ -27,4 +27,4 @@ jobs:
       - name: Run naja-action
         uses: ./.  # local composite action
         with:
-          yosys_script: benchs/black_parrot/yosys.ys
+          yosys_script: "${{ github.workspace }}/benchs/black_parrot/yosys.ys"
