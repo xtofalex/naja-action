@@ -1,15 +1,22 @@
 from os import path
 import sys
 import logging
+import argparse
 
 from najaeda import netlist
 from najaeda import instance_visitor
 
+parser = argparse.ArgumentParser(description="Count leaf instances in a netlist.")
+parser.add_argument("--liberty", type=str,
+                    help="Path to the liberty file")
+parser.add_argument("--verilog", type=str,
+                    help="Path to the Verilog file")
+args = parser.parse_args()
+
 logging.basicConfig(level=logging.INFO)
 
-netlist.load_primitives('xilinx')
-benchmarks = path.join('..', '..', 'benchmarks')
-top = netlist.load_verilog([path.join(benchmarks, 'verilog', 'vexriscv.v')])
+netlist.load_liberty(args.liberty)
+top = netlist.load_verilog([args.verilog])
 
 # snippet-start: count_leaves
 leaves = {"count": 0, "assigns": 0, "constants": 0}
