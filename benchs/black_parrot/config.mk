@@ -10,7 +10,7 @@ export VERILOG_FILES = $(DESIGN_HOME)/black_parrot.v \
 
 export ABC_AREA = 1
 
-export SDC_FILE      = $(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NAME)/constraint.sdc
+export SDC_FILE      = $(DESIGN_HOME)/constraint.sdc
 
 export ADDITIONAL_LEFS = $(PLATFORM_DIR)/lef/fakeram45_512x64.lef \
                          $(PLATFORM_DIR)/lef/fakeram45_256x95.lef \
