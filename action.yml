@@ -6,8 +6,8 @@ branding:
   color: "blue"
 
 inputs:
-  yosys_script:
-    description: "Path to the Yosys input script"
+  settings_path:
+    description: "Path to the settings file"
     required: true
   synth_root:
     description: "Path to the root of the design files"
@@ -17,5 +17,4 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.yosys_script }}
-    - ${{ inputs.synth_root }}
+    - ${{ inputs.settings_path }}

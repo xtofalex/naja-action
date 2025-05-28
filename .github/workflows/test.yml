@@ -27,5 +27,4 @@ jobs:
       - name: Run naja-action
         uses: ./.  # local composite action
         with:
-          yosys_script: "benchs/black_parrot/yosys.tcl"
-          synth_root: "benchs/black_parrot"
+          settings_path: "benchs/black_parrot/settings.mk"

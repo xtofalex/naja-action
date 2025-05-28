@@ -2,8 +2,7 @@
 set -e
 
 ROOT="/github/workspace"
-YOSYS_SCRIPT="$1"
-SYNTH_ROOT="$2"
+SETTINGS_PATH="$1"
 #LIBERTY_FILE="$ROOT/$SYNTH_ROOT/libs/NangateOpenCellLibrary_typical.lib"
 VERILOG_FILE="synth.v"
 
@@ -14,7 +13,7 @@ VERILOG_FILE="synth.v"
 
 #export SYNTH_ROOT="$ROOT/$SYNTH_ROOT"
 #/yosys-install/bin/yosys "$YOSYS_SCRIPT"
-cd /najaeda-or/flow && ls && ls scripts
+cp "$ROOT/$SETTINGS_PATH" /najaeda-or/flow/settings.mk
 cd /najaeda-or/flow && make
 
 #python3 $ROOT/scripts/count_leaves.py --liberty "$LIBERTY_FILE" --verilog "$VERILOG_FILE" 
