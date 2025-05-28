@@ -15,6 +15,6 @@ VERILOG_FILE="synth.v"
 #export SYNTH_ROOT="$ROOT/$SYNTH_ROOT"
 #/yosys-install/bin/yosys "$YOSYS_SCRIPT"
 cd /najaeda-or/flow && ls && ls scripts
-cd /majaeda-or/flow && make
+cd /najaeda-or/flow && make
 
 #python3 $ROOT/scripts/count_leaves.py --liberty "$LIBERTY_FILE" --verilog "$VERILOG_FILE" 
