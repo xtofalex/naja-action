@@ -6,15 +6,16 @@ branding:
   color: "blue"
 
 inputs:
-  settings_path:
-    description: "Path to the settings file"
+  design_home:
+    description: "Path to the design home"
     required: true
-  synth_root:
-    description: "Path to the root of the design files"
+  design_config:
+    description: "Path to the design config"
     required: true
 
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
+    - ${{ inputs.design_home }}
     - ${{ inputs.design_config }}

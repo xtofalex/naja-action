@@ -5,8 +5,8 @@ export PLATFORM    = nangate45
 export SYNTH_HIERARCHICAL = 1
 #
 
-export VERILOG_FILES = $(DESIGN_HOME)/src/$(DESIGN_NAME)/pickled.v \
-                       $(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NAME)/macros.v
+export VERILOG_FILES = $(DESIGN_HOME)/black_parrot.v \
+                       $(DESIGN_HOME)/macros.v
 
 export ABC_AREA = 1
 

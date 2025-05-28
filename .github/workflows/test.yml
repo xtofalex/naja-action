@@ -27,4 +27,5 @@ jobs:
       - name: Run naja-action
         uses: ./.  # local composite action
         with:
+          design_path: "benchs/black_parrot"
           design_config: "benchs/black_parrot/config.mk"
