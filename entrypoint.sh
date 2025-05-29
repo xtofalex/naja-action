@@ -16,8 +16,6 @@ VERILOG_FILE="synth.v"
 #/yosys-install/bin/yosys "$YOSYS_SCRIPT"
 export DESIGN_HOME="$ROOT/$DESIGN_HOME"
 export DESIGN_CONFIG="$ROOT/$DESIGN_CONFIG"
-echo $(which python3)
-echo $(which python)
 echo $(python3 -c "import yaml; print(yaml.__version__)")
 echo $(python -c "import yaml; print(yaml.__version__)")
 cd /najaeda-or/flow && make
