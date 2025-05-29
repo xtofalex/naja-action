@@ -1,6 +1,7 @@
 from os import path
 import sys
 import logging
+import glob
 import argparse
 
 from najaeda import netlist
@@ -15,7 +16,18 @@ args = parser.parse_args()
 
 logging.basicConfig(level=logging.INFO)
 
-netlist.load_liberty([args.liberty])
+#if args.liberty contains * then we expand it
+
+# Expand wildcard if present
+if '*' in args.liberty:
+    liberty_files = glob.glob(args.liberty)
+    if not liberty_files:
+        logging.error(f"No liberty files matched the pattern: {args.liberty}")
+        exit(1)
+else:
+    liberty_files = [args.liberty]
+
+netlist.load_liberty(liberty_files)
 top = netlist.load_verilog([args.verilog])
 
 # snippet-start: count_leaves
