@@ -5,7 +5,7 @@ ROOT="/github/workspace"
 DESIGN_HOME="$1"
 DESIGN_CONFIG="$2"
 LIBERTY_FILE="/najaeda-or/flow/objects/nangate45/bp/base/lib/*.lib"
-VERILOG_FILE="/results/nangate45/bp/base/1_synth.v"
+VERILOG_FILE="/najaeda-or/flow/results/nangate45/bp/base/1_synth.v"
 
 #export SYNTH_ROOT="$ROOT/$SYNTH_ROOT"
 #/yosys-install/bin/yosys "$YOSYS_SCRIPT"
