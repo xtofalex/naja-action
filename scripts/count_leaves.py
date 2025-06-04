@@ -4,6 +4,7 @@ import sys
 import logging
 import glob
 import argparse
+import time
 
 from najaeda import netlist
 from najaeda import instance_visitor
@@ -40,7 +41,7 @@ if args.primitives_mode == PrimitivesMode.XILINX:
     logging.info("Using Xilinx primitives")
     netlist.load_primitives('xilinx')
 elif args.primitives_mode == PrimitivesMode.LIBERTY:
-    logging.info("Using Liberty primitives")
+    logging.info("Using Liberty primitives from: %s", args.liberty)
     if not args.liberty:
         logging.error("Liberty file must be specified when using liberty primitives mode.")
         exit(1)
@@ -62,7 +63,6 @@ elif args.primitives_mode == PrimitivesMode.LIBERTY:
 
 top = netlist.load_verilog([args.verilog])
 
-leaves = {"count": 0, "assigns": 0, "constants": 0}
 def count_leaves(instance, leaves):
     if instance.is_leaf():
         if instance.is_assign():
@@ -71,14 +71,24 @@ def count_leaves(instance, leaves):
             leaves["constants"] += 1
         else:
             leaves["count"] += 1
+
+#count time to visit
+start_visit_time = time.time()
+leaves = {"count": 0, "assigns": 0, "constants": 0}
 visitor_config = instance_visitor.VisitorConfig(callback=count_leaves, args=(leaves,))
 instance_visitor.visit(top, visitor_config)
 print(f"{top} leaves count")
 print(f"nb_assigns={leaves['assigns']}")
 print(f"nb constants={leaves['constants']}")
 print(f"nb other leaves={leaves['count']}")
+end_visit_time = time.time()
+print(f"Time taken to visit design: {end_visit_time - start_visit_time} seconds")
 
+# Dump design stats
+logging.info("Dumping design stats")
 design_stats_file = open('design.stats', 'w')
 stats.dump_instance_stats_text(top, design_stats_file)
+design_stats_file.close()
+logging.info("Design stats dumped to design.stats")
 
 sys.exit(0)
