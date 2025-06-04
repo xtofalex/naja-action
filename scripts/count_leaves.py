@@ -50,7 +50,9 @@ elif args.primitives_mode == PrimitivesMode.LIBERTY:
     #if args.liberty contains * then we expand it
     # Expand wildcard if present
     if '*' in args.liberty:
+        logging.info(f"Expanding liberty file pattern: {args.liberty}")
         liberty_files = glob.glob(args.liberty)
+        logging.info(f"Matched liberty files: {liberty_files}")
         if not liberty_files:
             logging.error(f"No liberty files matched the pattern: {args.liberty}")
             exit(1)
