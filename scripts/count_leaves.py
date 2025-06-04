@@ -50,6 +50,7 @@ elif args.primitives_mode == PrimitivesMode.LIBERTY:
         exit(1)
     #if args.liberty contains * then we expand it
     # Expand wildcard if present
+    logging.info(f"Checking liberty file: {args.liberty}, contains '*': {'*' in args.liberty}")
     if '*' in args.liberty:
         logging.info(f"Expanding liberty file pattern: {args.liberty}")
         liberty_files = glob.glob(args.liberty)
@@ -81,7 +82,7 @@ logging.info(f"nb_assigns={leaves['assigns']}")
 logging.info(f"nb constants={leaves['constants']}")
 logging.info(f"nb other leaves={leaves['count']}")
 end_time = time.time()
-logging.info(f"Time taken to visit design: {end_time - start_time:.1f} seconds")
+logging.info(f"Time taken to visit design: {end_time - start_time:.2f} seconds")
 
 # Dump design stats
 start_time = time.time()
@@ -90,5 +91,5 @@ design_stats_file = open('design.stats', 'w')
 stats.dump_instance_stats_text(top, design_stats_file)
 design_stats_file.close()
 end_time = time.time()
-logging.info(f"Design stats dumped to design.stats in {end_time - start_time:.1f} seconds")
+logging.info(f"Design stats dumped to design.stats in {end_time - start_time:.2f} seconds")
 sys.exit(0)
