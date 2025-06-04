@@ -1,4 +1,5 @@
 from os import path
+from enum import Enum
 import sys
 import logging
 import glob
@@ -7,7 +8,25 @@ import argparse
 from najaeda import netlist
 from najaeda import instance_visitor
 
-parser = argparse.ArgumentParser(description="Count leaf instances in a netlist.")
+class PrimitivesMode(Enum):
+    XILINX = "xilinx"
+    LIBERTY = "liberty"
+
+def enum_type(enum_class):
+    def parse(s):
+        try:
+            return enum_class(s.lower())
+        except ValueError:
+            raise argparse.ArgumentTypeError(f"Invalid choice: {s}. Choose from {[e.value for e in enum_class]}")
+    return parse
+
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "--primitives_mode",
+    required=True,
+    type=enum_type(PrimitivesMode),
+    help="Primitives mode: xilinx (FPGA) or liberty"
+)
 parser.add_argument("--liberty", type=str,
                     help="Path to the liberty file")
 parser.add_argument("--verilog", type=str,
@@ -16,16 +35,26 @@ args = parser.parse_args()
 
 logging.basicConfig(level=logging.INFO)
 
-#if args.liberty contains * then we expand it
-
-# Expand wildcard if present
-if '*' in args.liberty:
-    liberty_files = glob.glob(args.liberty)
-    if not liberty_files:
-        logging.error(f"No liberty files matched the pattern: {args.liberty}")
+if args.primitives_mode == PrimitivesMode.XILINX:
+    logging.info("Using Xilinx primitives")
+    netlist.load_primitives('xilinx')
+elif args.primitives_mode == PrimitivesMode.LIBERTY:
+    logging.info("Using Liberty primitives")
+    if not args.liberty:
+        logging.error("Liberty file must be specified when using liberty primitives mode.")
         exit(1)
-else:
-    liberty_files = [args.liberty]
+    if not path.exists(args.liberty):
+        logging.error(f"Liberty file does not exist: {args.liberty}")
+        exit(1)
+    #if args.liberty contains * then we expand it
+    # Expand wildcard if present
+    if '*' in args.liberty:
+        liberty_files = glob.glob(args.liberty)
+        if not liberty_files:
+            logging.error(f"No liberty files matched the pattern: {args.liberty}")
+            exit(1)
+    else:
+        liberty_files = [args.liberty]
 
 netlist.load_liberty(liberty_files)
 top = netlist.load_verilog([args.verilog])
