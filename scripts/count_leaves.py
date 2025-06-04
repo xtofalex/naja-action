@@ -45,9 +45,6 @@ elif args.primitives_mode == PrimitivesMode.LIBERTY:
     if not args.liberty:
         logging.error("Liberty file must be specified when using liberty primitives mode.")
         exit(1)
-    if not path.exists(args.liberty):
-        logging.error(f"Liberty file does not exist: {args.liberty}")
-        exit(1)
     #if args.liberty contains * then we expand it
     # Expand wildcard if present
     logging.info(f"Checking liberty file: {args.liberty}, contains '*': {'*' in args.liberty}")
@@ -59,6 +56,9 @@ elif args.primitives_mode == PrimitivesMode.LIBERTY:
             logging.error(f"No liberty files matched the pattern: {args.liberty}")
             exit(1)
     else:
+        if not path.exists(args.liberty):
+            logging.error(f"Liberty file does not exist: {args.liberty}")
+            exit(1)
         liberty_files = [args.liberty]
     netlist.load_liberty(liberty_files)
 
