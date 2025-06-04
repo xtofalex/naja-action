@@ -28,5 +28,5 @@ jobs:
         uses: ./.  # local composite action
         with:
           mode: "direct"
-          design_home: "benchs/benchs/vexriscv"
-          design_config: "benchs/benchs/vexriscv/synth.ys"
+          design_home: "benchs/vexriscv"
+          design_config: "benchs/vexriscv/synth.ys"
