@@ -24,8 +24,8 @@ else
     echo "Running in direct yosys mode"
     #export SYNTH_ROOT="$ROOT/najaeda-or/flow"
     #export SYNTH_ROOT="$ROOT/$SYNTH_ROOT"
-    cd $DESIGN_HOME &&$YOSYS_EXE $DESIGN_CONFIG
-    VERILOG_FILE="$DESIGN_HOME/naja_netlist.v"
+    cd $DESIGN_HOME && $YOSYS_EXE $DESIGN_CONFIG
+    VERILOG_FILE="naja_netlist.v"
     echo "Verilog file: $VERILOG_FILE"
 
     python3 $ROOT/scripts/count_leaves.py --primitives_mode="xilinx" --verilog "$VERILOG_FILE" 
