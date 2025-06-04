@@ -72,8 +72,7 @@ def count_leaves(instance, leaves):
         else:
             leaves["count"] += 1
 
-#count time to visit
-start_visit_time = time.time()
+start_time = time.time()
 leaves = {"count": 0, "assigns": 0, "constants": 0}
 visitor_config = instance_visitor.VisitorConfig(callback=count_leaves, args=(leaves,))
 instance_visitor.visit(top, visitor_config)
@@ -81,14 +80,15 @@ logging.info(f"{top} leaves count")
 logging.info(f"nb_assigns={leaves['assigns']}")
 logging.info(f"nb constants={leaves['constants']}")
 logging.info(f"nb other leaves={leaves['count']}")
-end_visit_time = time.time()
-logging.info(f"Time taken to visit design: {end_visit_time - start_visit_time} seconds")
+end_time = time.time()
+logging.info(f"Time taken to visit design: {end_time - start_time:.1f} seconds")
 
 # Dump design stats
+start_time = time.time()
 logging.info("Dumping design stats")
 design_stats_file = open('design.stats', 'w')
 stats.dump_instance_stats_text(top, design_stats_file)
 design_stats_file.close()
-logging.info("Design stats dumped to design.stats")
-
+end_time = time.time()
+logging.info(f"Design stats dumped to design.stats in {end_time - start_time:.1f} seconds")
 sys.exit(0)
