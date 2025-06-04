@@ -7,6 +7,7 @@ import argparse
 
 from najaeda import netlist
 from najaeda import instance_visitor
+from najaeda import stats
 
 class PrimitivesMode(Enum):
     XILINX = "xilinx"
@@ -55,8 +56,8 @@ elif args.primitives_mode == PrimitivesMode.LIBERTY:
             exit(1)
     else:
         liberty_files = [args.liberty]
+    netlist.load_liberty(liberty_files)
 
-netlist.load_liberty(liberty_files)
 top = netlist.load_verilog([args.verilog])
 
 leaves = {"count": 0, "assigns": 0, "constants": 0}
