@@ -77,12 +77,12 @@ start_visit_time = time.time()
 leaves = {"count": 0, "assigns": 0, "constants": 0}
 visitor_config = instance_visitor.VisitorConfig(callback=count_leaves, args=(leaves,))
 instance_visitor.visit(top, visitor_config)
-print(f"{top} leaves count")
-print(f"nb_assigns={leaves['assigns']}")
-print(f"nb constants={leaves['constants']}")
-print(f"nb other leaves={leaves['count']}")
+logging.info(f"{top} leaves count")
+logging.info(f"nb_assigns={leaves['assigns']}")
+logging.info(f"nb constants={leaves['constants']}")
+logging.info(f"nb other leaves={leaves['count']}")
 end_visit_time = time.time()
-print(f"Time taken to visit design: {end_visit_time - start_visit_time} seconds")
+logging.info(f"Time taken to visit design: {end_visit_time - start_visit_time} seconds")
 
 # Dump design stats
 logging.info("Dumping design stats")
