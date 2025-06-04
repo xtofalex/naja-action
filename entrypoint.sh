@@ -25,4 +25,4 @@ else
     $YOSYS_EXE $DESIGN_CONFIG
 fi
 
-#python3 $ROOT/scripts/count_leaves.py --liberty "$LIBERTY_FILE" --verilog "$VERILOG_FILE" 
+python3 $ROOT/scripts/count_leaves.py --liberty "$LIBERTY_FILE" --verilog "$VERILOG_FILE" 
