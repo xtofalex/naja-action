@@ -30,7 +30,6 @@ else:
 netlist.load_liberty(liberty_files)
 top = netlist.load_verilog([args.verilog])
 
-# snippet-start: count_leaves
 leaves = {"count": 0, "assigns": 0, "constants": 0}
 def count_leaves(instance, leaves):
     if instance.is_leaf():
@@ -46,6 +45,8 @@ print(f"{top} leaves count")
 print(f"nb_assigns={leaves['assigns']}")
 print(f"nb constants={leaves['constants']}")
 print(f"nb other leaves={leaves['count']}")
-# snippet-end: count_leaves
+
+design_stats_file = open('design.stats', 'w')
+stats.dump_instance_stats_text(top, design_stats_file)
 
 sys.exit(0)

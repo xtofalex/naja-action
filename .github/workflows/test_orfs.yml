@@ -1,4 +1,4 @@
-name: "Test naja-action"
+name: "Test naja-action in orfs mode"
 
 on:
   push:
@@ -22,10 +22,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Run naja-action
         uses: ./.  # local composite action
         with:
-          design_home: "benchs/black_parrot"
+          mode: "orfs"
           design_config: "benchs/black_parrot/config.mk"
