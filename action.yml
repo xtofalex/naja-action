@@ -6,6 +6,10 @@ branding:
   color: "blue"
 
 inputs:
+  mode:
+    description: "Mode of operation: 'direct' for direct synthesis, 'orfs' for ORFS synthesis"
+    required: true
+    default: "orfs"
   design_home:
     description: "Path to the design home"
     required: true
@@ -17,5 +21,6 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
+    - ${{ inputs.mode }}
     - ${{ inputs.design_home }}
     - ${{ inputs.design_config }}

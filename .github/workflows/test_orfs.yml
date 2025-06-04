@@ -28,4 +28,5 @@ jobs:
         uses: ./.  # local composite action
         with:
           mode: "orfs"
+          design_home: "benchs/black_parrot"
           design_config: "benchs/black_parrot/config.mk"
