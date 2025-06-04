@@ -20,9 +20,9 @@ if [ "$MODE" == "orfs" ]; then
     echo "Verilog file: $VERILOG_FILE"
 else
     echo "Running in direct yosys mode"
-    export SYNTH_ROOT="$ROOT/najaeda-or/flow"
+    #export SYNTH_ROOT="$ROOT/najaeda-or/flow"
     #export SYNTH_ROOT="$ROOT/$SYNTH_ROOT"
-    $YOSYS_EXE $DESIGN_CONFIG
+    cd $DESIGN_HOME &&$YOSYS_EXE $DESIGN_CONFIG
 fi
 
 python3 $ROOT/scripts/count_leaves.py --liberty "$LIBERTY_FILE" --verilog "$VERILOG_FILE" 
