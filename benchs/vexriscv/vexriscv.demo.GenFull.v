@@ -1004,9 +1004,9 @@ module DataCache (
     if((! io_cpu_writeBack_isStuck))begin
       stageB_colisions <= stageA_colisions;
     end
-    if(!(! ((io_cpu_writeBack_isValid && (! io_cpu_writeBack_haltIt)) && io_cpu_writeBack_isStuck))) begin
-      $display("ERROR writeBack stuck by another plugin is not allowed");
-    end
+    //if(!(! ((io_cpu_writeBack_isValid && (! io_cpu_writeBack_haltIt)) && io_cpu_writeBack_isStuck))) begin
+    //  $display("ERROR writeBack stuck by another plugin is not allowed");
+    //end
   end
 
   always @ (posedge clk or posedge reset) begin

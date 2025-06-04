@@ -18,11 +18,15 @@ if [ "$MODE" == "orfs" ]; then
     echo "Liberty file: $LIBERTY_FILE"
     echo "$(ls /najaeda-or/flow/objects/nangate45/bp/base/lib)"
     echo "Verilog file: $VERILOG_FILE"
+
+    python3 $ROOT/scripts/count_leaves.py --primitives_mode="liberty" --liberty "$LIBERTY_FILE" --verilog "$VERILOG_FILE" 
 else
     echo "Running in direct yosys mode"
-    export SYNTH_ROOT="$ROOT/najaeda-or/flow"
+    #export SYNTH_ROOT="$ROOT/najaeda-or/flow"
     #export SYNTH_ROOT="$ROOT/$SYNTH_ROOT"
-    $YOSYS_EXE $DESIGN_CONFIG
-fi
+    cd $DESIGN_HOME && $YOSYS_EXE $DESIGN_CONFIG
+    VERILOG_FILE="naja_netlist.v"
+    echo "Verilog file: $VERILOG_FILE"
 
-#python3 $ROOT/scripts/count_leaves.py --liberty "$LIBERTY_FILE" --verilog "$VERILOG_FILE" 
+    python3 $ROOT/scripts/count_leaves.py --primitives_mode="xilinx" --verilog "$VERILOG_FILE" 
+fi
