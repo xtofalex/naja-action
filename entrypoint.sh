@@ -32,5 +32,5 @@ else
     VERILOG_FILE="naja_netlist.v"
     echo "Verilog file: $VERILOG_FILE"
 
-    python3 /najaeda_scripts/count_leaves.py --primitives_mode="xilinx" --verilog "$VERILOG_FILE" 
+    python3 /najaeda_scripts/count_leaves.py --primitives_mode="xilinx" --verilog "$DESIGN_HOME/$VERILOG_FILE"
 fi
