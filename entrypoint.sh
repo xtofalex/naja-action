@@ -10,10 +10,6 @@ export YOSYS_EXE="/yosys/bin/yosys"
 export DESIGN_HOME="$ROOT/$DESIGN_HOME"
 export DESIGN_CONFIG="$ROOT/$DESIGN_CONFIG"
 
-echo "Installing tools..."
-apk add curl
-echo "::endgroup::"
-
 if [ "$MODE" == "orfs" ]; then
     echo "::group::Naja-ORFS"
     echo "Naja ORFS mode selected"
