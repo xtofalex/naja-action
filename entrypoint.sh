@@ -19,7 +19,7 @@ if [ "$MODE" == "orfs" ]; then
     echo "$(ls /najaeda-or/flow/objects/nangate45/bp/base/lib)"
     echo "Verilog file: $VERILOG_FILE"
 
-    python3 $ROOT/scripts/count_leaves.py --primitives_mode="liberty" --liberty "$LIBERTY_FILE" --verilog "$VERILOG_FILE" 
+    python3 /najaeda_scripts/count_leaves.py --primitives_mode="liberty" --liberty "$LIBERTY_FILE" --verilog "$VERILOG_FILE" 
 else
     echo "Running in direct yosys mode"
     echo "Yosys executable: $YOSYS_EXE"
@@ -32,5 +32,5 @@ else
     VERILOG_FILE="naja_netlist.v"
     echo "Verilog file: $VERILOG_FILE"
 
-    python3 $ROOT/scripts/count_leaves.py --primitives_mode="xilinx" --verilog "$VERILOG_FILE" 
+    python3 /najaeda_scripts/count_leaves.py --primitives_mode="xilinx" --verilog "$VERILOG_FILE" 
 fi
