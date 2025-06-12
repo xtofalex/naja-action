@@ -1,5 +1,5 @@
 set design "$::env(DESIGN_HOME)/vexriscv.demo.GenFull.v"
 yosys -import
-read_verilog 
-synth_xilinx -top "$design"
+read_verilog "$design"
+synth_xilinx -top vexriscv.demo.GenFull 
 write_verilog naja_netlist.v
