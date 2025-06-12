@@ -29,7 +29,7 @@ else
     cd naja-run
     #export SYNTH_ROOT="$ROOT/najaeda-or/flow"
     #export SYNTH_ROOT="$ROOT/$SYNTH_ROOT"
-    $YOSYS_EXE -c "$ROOT/$DESIGN_CONFIG"
+    $YOSYS_EXE -c "$DESIGN_CONFIG"
     VERILOG_FILE="naja_netlist.v"
     echo "Verilog file: $VERILOG_FILE"
 
