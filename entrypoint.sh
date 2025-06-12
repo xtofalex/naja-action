@@ -9,9 +9,6 @@ DESIGN_CONFIG="$3"
 export YOSYS_EXE="/yosys/bin/yosys"
 export DESIGN_CONFIG="$ROOT/$DESIGN_CONFIG"
 
-echo "Environment variables:"
-env
-
 if [ "$MODE" == "orfs" ]; then
     echo "Running in ORFS mode"
     export DESIGN_HOME="$ROOT/$DESIGN_HOME"
