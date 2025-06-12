@@ -1,3 +1,4 @@
+yosys -import
 read_verilog vexriscv.demo.GenFull.v
 synth_xilinx -top vexriscv.demo.GenFull
 write_verilog naja_netlist.v
