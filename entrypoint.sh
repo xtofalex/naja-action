@@ -24,13 +24,14 @@ else
     echo "Running in direct yosys mode"
     echo "Yosys executable: $YOSYS_EXE"
     echo "Yosys version: $($YOSYS_EXE -V)"
-    echo "Design home: $DESIGN_HOME"
     echo "Design config: $DESIGN_CONFIG"
+    mkdir naja-run
+    cd naja-run
     #export SYNTH_ROOT="$ROOT/najaeda-or/flow"
     #export SYNTH_ROOT="$ROOT/$SYNTH_ROOT"
-    cd $DESIGN_HOME && $YOSYS_EXE -c $DESIGN_CONFIG
+    $YOSYS_EXE -c "$ROOT/$DESIGN_CONFIG"
     VERILOG_FILE="naja_netlist.v"
     echo "Verilog file: $VERILOG_FILE"
 
-    python3 /najaeda_scripts/count_leaves.py --primitives_mode="xilinx" --verilog "$DESIGN_HOME/$VERILOG_FILE"
+    python3 /najaeda_scripts/count_leaves.py --primitives_mode="xilinx" --verilog "$VERILOG_FILE"
 fi
