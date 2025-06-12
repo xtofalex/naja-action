@@ -7,11 +7,11 @@ DESIGN_HOME="$2"
 DESIGN_CONFIG="$3"
 
 export YOSYS_EXE="/yosys/bin/yosys"
+export DESIGN_HOME="$ROOT/$DESIGN_HOME"
 export DESIGN_CONFIG="$ROOT/$DESIGN_CONFIG"
 
 if [ "$MODE" == "orfs" ]; then
     echo "Running in ORFS mode"
-    export DESIGN_HOME="$ROOT/$DESIGN_HOME"
     LIBERTY_FILE="/najaeda-or/flow/objects/nangate45/bp/base/lib/*.lib"
     VERILOG_FILE="/najaeda-or/flow/results/nangate45/bp/base/1_synth.v"
     cd /najaeda-or/flow && make synth
